@@ -20,8 +20,8 @@ class simpleKeypad {
 
 public:
 
-simpleKeypad(int interval, int readTimes, int repeatDelay);
-simpleKeypad(int interval, int readTimes);
+simpleKeypad(int interval, int repeatDelay, int readTimes);
+simpleKeypad(int interval, int repeatDelay);
 simpleKeypad(int interval);
 simpleKeypad();
 

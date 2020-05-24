@@ -5,9 +5,9 @@ Arduino key input support library for DFROBOT Arduino LCD keypad shield (SKU: DF
 
 ## Features
 simpleKeypad library can
- * avoid key chattering.
+ * avoid key debounce.
  * set key repeat rate.
- * set delay time to start key repeat.
+ * set wait time before a pressed button begins repeating.
 
 ## Function
 **int read_buttons()**  returns key code listed below.

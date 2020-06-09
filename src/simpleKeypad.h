@@ -8,30 +8,32 @@
 #include <Arduino.h> 
 
 // define some values used by the panel and buttons
-#define btnRIGHT  0
-#define btnUP     1
-#define btnDOWN   2
-#define btnLEFT   3
-#define btnSELECT 4
-#define btnNONE   5
-#define btnVOID   6  //  Key pressed continuously but not elapsed _KEY_INTERVAL ms from previous key input
+typedef enum {
+  btnRIGHT  = 0,
+  btnUP     = 1,
+  btnDOWN   = 2,
+  btnLEFT   = 3,
+  btnSELECT = 4,
+  btnNONE   = 5,
+  btnVOID   = 6  //  Key pressed continuously but not elapsed _KEY_INTERVAL ms from previous key input
+} btnCODE_t;
 
 class simpleKeypad { 
 
 public:
 
-simpleKeypad(int interval, int repeatDelay, int readTimes);
-simpleKeypad(int interval, int repeatDelay);
-simpleKeypad(int interval);
+simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes);
+simpleKeypad(int16_t interval, int16_t repeatDelay);
+simpleKeypad(int16_t interval);
 simpleKeypad();
 
-int read_buttons();
-void repeatInterval(int interval);
+btnCODE_t read_buttons();
+void repeatInterval(int16_t interval);
 
 private:
 
-int _REPEAT_INTERVAL = 200;  // Repeat interval (ms) when a key is pressed continuously
-int _REPEAT_DELAY = 500;     // Delay time (ms) for the first key repeat input
-int _READ_TIMES = 200;       // Number of analog read for a key reading to avoid key chatter
+int16_t _REPEAT_INTERVAL = 200;  // Repeat interval (ms) when a key is pressed continuously
+int16_t _REPEAT_DELAY = 500;     // Delay time (ms) for the first key repeat input
+int16_t _READ_TIMES = 200;       // Number of analog read for a key reading to avoid key chatter
 };
 #endif

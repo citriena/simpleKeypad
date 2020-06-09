@@ -1,41 +1,40 @@
 #include <simpleKeypad.h>
-#include <Arduino.h>
 
 
-simpleKeypad::simpleKeypad(int interval, int repeatDelay, int readTimes) {
-  _REPEAT_INTERVAL = interval;
-  _REPEAT_DELAY = repeatDelay;
-  _READ_TIMES = readTimes;
-}
+simpleKeypad::simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes) :
+  _REPEAT_INTERVAL(interval),
+  _REPEAT_DELAY(repeatDelay),
+  _READ_TIMES(readTimes)
+{}
 
 
-simpleKeypad::simpleKeypad(int interval, int repeatDelay) {
-  _REPEAT_INTERVAL = interval;
-  _REPEAT_DELAY = repeatDelay;
-}
+simpleKeypad::simpleKeypad(int16_t interval, int16_t repeatDelay) :
+  _REPEAT_INTERVAL(interval),
+  _REPEAT_DELAY(repeatDelay)
+{}
 
 
-simpleKeypad::simpleKeypad(int interval) {
-  _REPEAT_INTERVAL = interval;
-}
+simpleKeypad::simpleKeypad(int16_t interval) :
+  _REPEAT_INTERVAL(interval)
+{}
 
 
 simpleKeypad::simpleKeypad() {
 }
 
 
-int simpleKeypad::read_buttons() {
+btnCODE_t simpleKeypad::read_buttons() {
 
   static unsigned long prevKeyTime = 0;
-  static int repeatTimes = 0;
   unsigned long tKeyTime;
-  static int prevKeyCode = btnNONE;
-  int keyCode = btnNONE;
+  static int16_t repeatTimes = 0;
+  static btnCODE_t prevKeyCode = btnNONE;
+  btnCODE_t keyCode = btnNONE;
 
-  int adc_key_in = 1023;                          // initial value is that of not key pressed
-  int key_in;
+  int16_t adc_key_in = 1023;                          // initial value is that of not key pressed
+  int16_t key_in;
 
-  for (int i = 0; i < _READ_TIMES; i++) {         // read _READ_TIMKES times for key chattering measure
+  for (int i = 0; i < _READ_TIMES; i++) {         // read _READ_TIMKES times for key bouncing measure
     key_in = analogRead(0);                       // read the value from the sensor
     if (key_in < adc_key_in) adc_key_in = key_in; // use smallest value to avoid key chattering fault
   }
@@ -72,6 +71,6 @@ int simpleKeypad::read_buttons() {
 }
 
 
-void simpleKeypad::repeatInterval(int interval) {
+void simpleKeypad::repeatInterval(int16_t interval) {
   _REPEAT_INTERVAL = interval;
 }

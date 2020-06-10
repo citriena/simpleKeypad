@@ -17,7 +17,7 @@ simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes);
 * interval（optional; default value: 200ms）
   * key input repeat interval (ms) when pressed continuously
 * repeatDelay（optional; default value: 500ms）
-  * wait time to start key input repeating (ms) if larger than interval
+  * wait time (ms) to start key input repeating if larger than key input repeat interval
 * readTimes（optional; default value: 200）
   * read times of analogRead() for a key reading
   * use minimum value of the readings to avoid key debounce problem
@@ -96,6 +96,6 @@ void repeatInterval(int16_t interval);
 ````
 キーリピート間隔を指定します(ms)。コンストラクタで指定できるので、普通は使うことはないと思います。
 
-## サンプルスケッチ
+### サンプルスケッチ
 具体的な使い方はサンプルスケッチを見てください。
 

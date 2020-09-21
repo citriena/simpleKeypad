@@ -91,6 +91,10 @@ btnCODE_t read_buttons();
  * Select - btnSELECT (4)
  * None   - btnNONE   (5)
  * Void   - btnVOID   (6)
+
+Voidは、物理的にキーは押されているけれども、キーリピート間隔の制限で押されているキーのキーコードを返さない場合です。
+
+
 ````
 void repeatInterval(int16_t interval);
 ````

@@ -9,13 +9,13 @@
 
 // define some values used by the panel and buttons
 typedef enum {
-  btnRIGHT  = 0,
-  btnUP     = 1,
-  btnDOWN   = 2,
-  btnLEFT   = 3,
-  btnSELECT = 4,
-  btnNONE   = 5,
-  btnVOID   = 6  //  Key pressed continuously but not elapsed _KEY_INTERVAL ms from previous key input
+  btnNONE   =  0,
+  btnSELECT =  1,
+  btnRIGHT  =  2,
+  btnDOWN   =  4,
+  btnUP     =  8,
+  btnLEFT   = 16,
+  btnVOID   = 32  //  Key pressed continuously but not elapsed _KEY_INTERVAL ms from previous key input
 } btnCODE_t;
 
 class simpleKeypad { 

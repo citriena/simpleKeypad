@@ -1,6 +1,7 @@
 # simpleKeypad
 
-citriena 2021
+https://github.com/citriena/simpleKeypad  
+(c) citriena (citriena@yahoo.co.jp)
 
 ## 概要
 

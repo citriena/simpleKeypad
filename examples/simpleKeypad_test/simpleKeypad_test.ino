@@ -1,5 +1,5 @@
 #include <LiquidCrystal.h>
-#include <simpleKeypad.h>
+#include <simpleKeypad.h> // https://github.com/citriena/simpleKeypad
 
 /*******************************************************
 Test sketch for simpleKeypad library for Arduino LCD keypad shield

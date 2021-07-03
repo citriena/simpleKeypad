@@ -1,5 +1,9 @@
 # simpleKeypad
 
+https://github.com/citriena/simpleKeypad  
+(c) citriena (citriena@yahoo.co.jp)
+
+
 ## Introduction
 Arduino key input support library for DFROBOT Arduino LCD keypad shield (SKU: DFR0009) or its compatibles.
 

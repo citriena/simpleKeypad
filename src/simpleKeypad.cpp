@@ -35,7 +35,7 @@ btnCODE_t simpleKeypad::read_buttons() {
   int16_t key_in;
 
   for (int i = 0; i < _READ_TIMES; i++) {         // read _READ_TIMKES times for key bouncing measure
-    key_in = analogRead(0);                       // read the value from the sensor
+    key_in = analogRead(A0);                       // read the value from the sensor
     if (key_in < adc_key_in) adc_key_in = key_in; // use smallest value to avoid key chattering fault
   }
 // my buttons when read are centered at these valies: 0, 144, 329, 504, 741

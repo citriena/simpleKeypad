@@ -1,4 +1,13 @@
+// simpleKeypad.cpp v1.2.0
 #include <simpleKeypad.h>
+
+
+simpleKeypad::simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes, bool quickBtnChk) :
+  _REPEAT_INTERVAL(interval),
+  _REPEAT_DELAY(repeatDelay),
+  _READ_TIMES(readTimes),
+  _QUICK_BTN_NONE_CHK(quickBtnChk)
+{}
 
 
 simpleKeypad::simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes) :
@@ -34,13 +43,18 @@ btnCODE_t simpleKeypad::read_buttons() {
   int16_t adc_key_in = 1023;                          // initial value is that of not key pressed
   int16_t key_in;
 
+
   for (int i = 0; i < _READ_TIMES; i++) {         // read _READ_TIMKES times for key bouncing measure
-    key_in = analogRead(A0);                       // read the value from the sensor
+    key_in = analogRead(A0);                      // read the value from the sensor
+    if ((_QUICK_BTN_NONE_CHK) && (i == 0) && (key_in > 1000)) {        // When the first read is btnNONE return immediately for speed.
+      prevKeyCode = btnNONE;
+      return btnNONE;         // We make this the 1st option for speed reasons since it will be the most likely result
+    }                         // キー押し続けた場合の処理のため、すぐにreturnしない。このため判定順序を入れ替えた。
     if (key_in < adc_key_in) adc_key_in = key_in; // use smallest value to avoid key chattering fault
   }
 // my buttons when read are centered at these valies: 0, 144, 329, 504, 741
 // we add approx 50 to those values and check to see if we are close
-  if (adc_key_in > 1000) {
+  if (adc_key_in > 1000) {        // When the first read is btnNONE return quickly for speed.
     prevKeyCode = btnNONE;
     return btnNONE;         // We make this the 1st option for speed reasons since it will be the most likely result
   }                         // キー押し続けた場合の処理のため、すぐにreturnしない。このため判定順序を入れ替えた。

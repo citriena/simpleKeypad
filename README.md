@@ -16,15 +16,18 @@ simpleKeypad library can
 ## Usage
 ### Constructor
 ````
-simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes);
+simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes, bool quickBtnChk);
 ````
-* interval（optional; default value: 200ms）
+* interval (optional; default value: 200ms)
   * key input repeat interval (ms) when pressed continuously
-* repeatDelay（optional; default value: 500ms）
+* repeatDelay (optional; default value: 500ms)
   * wait time (ms) to start key input repeating if larger than key input repeat interval
-* readTimes（optional; default value: 200）
+* readTimes (optional; default value: 200)
   * read times of analogRead() for a key reading
   * use minimum value of the readings to avoid key debounce problem
+* quickBtnChk (optional; default value: false)
+  * When true simplify btnNONE check and return btnNONE immediately if the first analogRead() value is over 1000 to avoid delay in a roop structure.
+  * When false alalogRead() is executed readTimes times even if no key is pressed.
 
 ### Functions
 ````
@@ -59,3 +62,6 @@ See sample sketch for basic usage.
 
 ### 1.1.0 - Mar. 05, 2021
 * key code changed.
+
+### 1.2.0 - Sep 03, 2022
+* add function to return immediately when the first read is btnNONE (for speed up).

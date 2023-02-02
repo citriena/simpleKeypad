@@ -17,7 +17,7 @@ DFROBOTのArduino LCD keypad shield (SKU: DFR0009)、およびその互換シー
 
 ### コンストラクタ
 ````
-simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes);
+simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes, bool quickBtnChk);
 ````
 * interval（省略可;初期値: 200ms）
   * キーリピート時の入力間隔(ms)
@@ -26,6 +26,9 @@ simpleKeypad(int16_t interval, int16_t repeatDelay, int16_t readTimes);
   * この設定値が上のキーリピート間隔（interval）より大きければ、最初のリピート入力開始までの時間はこの設定値となります。
 * readTimes（省略可;初期値: 200）
   * この指定回数キーを読み、analogRead()の最も小さい値を読み取り値として処理します（接触不良による抵抗値の増大対策）。
+* bool quickBtnChk（省略可;初期値: false）
+  * trueの場合、readTimes初回での読み取り値が1000を超えていたら（=キーが押されていない）、即座に終了。ループ内での遅延防止用。
+ * falseの場合は必ずreadTimes回読み出すので、キーが押されていなくても一定時間必要。
 
 ### 機能
 ````
@@ -62,3 +65,6 @@ void repeatInterval(int16_t interval);
 
 ### 1.1.0 - Mar 05, 2021
 * key code changed.
+
+### 1.2.0 - Sep 03, 2022
+* add function to return immediately when the first read is btnNONE (for speed up).
